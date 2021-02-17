@@ -8,9 +8,9 @@ import (
 // SetupRouter - Set up gin router
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
-	v1 := r.Group("/github/v1")
+	github := r.Group("/github/v1")
 	{
-		v1.POST("webhook", controllers.ReceiveGitHubWebHook)
+		github.POST("webhook", controllers.ReceiveGitHubWebHook)
 	}
 	return r
 }
