@@ -20,7 +20,8 @@ jobs:
         run: go vet
       - name: Lint
         run: golint
-      - name: Tests
+      - name: Routes Tests
         run: |
+          cd routes
           go test -v -coverprofile=coverage.out
           go tool cover -func=coverage.out

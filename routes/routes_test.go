@@ -1,12 +1,12 @@
-package main
+package routes
 
 import (
 	"testing"
-
 	"github.com/gin-gonic/gin"
 )
 
-func TestMain(t *testing.T) {
+
+func TestSetupRouter(t *testing.T) {
 	gin.SetMode(gin.TestMode)
-	main()
+	SetupRouter()
 }
