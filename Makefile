@@ -52,4 +52,4 @@ compile:	## Compiles Domi for all architectures and places binaries into /bin
 clean:	## Blows away the bin/ directory
 	rm -rf bin/
 
-all: title build r
+all: title docker run
