@@ -52,4 +52,4 @@ compile:	## Compiles Domi for all architectures and places binaries into /bin
 clean:	## Blows away the bin/ directory
 	rm -rf bin/
 
-all: title build run
+all: title build r
