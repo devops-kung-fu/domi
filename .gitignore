@@ -19,3 +19,6 @@
 # Generated Binaries
 
 bin/
+
+# IDEs
+.vscode
