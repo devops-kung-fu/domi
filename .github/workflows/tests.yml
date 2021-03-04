@@ -27,7 +27,7 @@ jobs:
           go tool cover -func=coverage.out
       - name: GitHub Tests
         run: |
-          cd github
+          cd ../github
           go test -v -coverprofile=coverage.out
           go tool cover -func=coverage.out
       - name: CodeCov
