@@ -25,9 +25,9 @@ jobs:
           cd routes
           go test -v -coverprofile=coverage.out
           go tool cover -func=coverage.out
-      - name: GitHub Tests
+      - name: Lib Tests
         run: |
-          cd ../github
+          cd lib
           go test -v -coverprofile=coverage.out
           go tool cover -func=coverage.out
       - name: CodeCov
