@@ -27,6 +27,11 @@ type GitHubProvider struct {
 	installationTransport	*ghinstallation.Transport
 }
 
+// GitHub interface
+type GitHub interface {
+	GitHubAuthenticator() (*github.Client, error)
+}
+
 // NewGitHubProvider - Starts a new GitHub Provider
 func NewGitHubProvider() (*GitHubProvider, error) {
 	gitHubProvider := GitHubProvider{}

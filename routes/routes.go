@@ -17,6 +17,5 @@ func SetupRouter() *gin.Engine {
 	{
 		github.POST("webhook", controllers.ReceiveGitHubWebHook)
 	}
-	
 	return r
 }
