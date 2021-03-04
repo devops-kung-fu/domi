@@ -25,3 +25,8 @@ jobs:
           cd routes
           go test -v -coverprofile=coverage.out
           go tool cover -func=coverage.out
+      - name: GitHub Tests
+        run: |
+          cd routes
+          go test -v -coverprofile=coverage.out
+          go tool cover -func=coverage.out
