@@ -18,9 +18,9 @@ jobs:
       - name: Build
         run: go build
       - name: Vet
-        run: go vet
+        run: go vet -v
       - name: Lint
-        run: golint
+        run: golint ./...
       - name: gocyclo
         run: gocyclo .
         
