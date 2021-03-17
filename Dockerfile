@@ -8,8 +8,8 @@ RUN dpkg -i *.deb
 ADD bin/domi /usr/local/bin/domi
 
 RUN apt-get autoremove -y && apt-get remove jq curl wget -y
-RUN groupadd -r domi && useradd --system --gid domi domi
-RUN mkdir /domi && chown domi:domi /domi && rm *.deb
+RUN mkdir /domi && groupadd -r domi && useradd --system --home-dir /domi --gid domi domi
+RUN chown domi:domi /domi && rm *.deb
 USER domi
 
 VOLUME [ "/domi" ]
