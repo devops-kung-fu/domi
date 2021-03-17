@@ -31,7 +31,7 @@ build: 	## Build a local architecture version of Domi
 build-amd64:
 	GOOS=linux GOARCH=amd64 go build -o bin/domi-linux-amd64 main.go
 
-serve: 	## Runs a local instance of Domi
+serve: 	## Runs a local instance of Domi (not in docker)
 	go run main.go
 
 docker: build-amd64 ## Build the container
@@ -59,5 +59,14 @@ compile: 	## Compiles Domi locally for various architectures and places binaries
 
 clean:	## Blows away the bin/ directory
 	rm -rf bin/
+
+install-chart: ## Installs the helm chart to the current K8s context
+	helm install domi ./domi-chart
+
+upgrade-chart: ## Upgrades the helm chart to the current K8s context
+	helm upgrade domi ./domi-chart
+
+uninstall-chart:  ## Removes the helm chart from the current K8s context
+	helm uninstall domi
 
 all: title docker run ## Builds and runs domi locally
