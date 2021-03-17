@@ -1,5 +1,8 @@
 # domi
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/domi)](https://goreportcard.com/report/github.com/devops-kung-fu/domi) [![codecov](https://codecov.io/gh/devops-kung-fu/domi/branch/main/graph/badge.svg?token=R1TFX89WFQ)](https://codecov.io/gh/devops-kung-fu/domi)
+
+
 __NOTICE: This documentation and project is under massive development. Consider this volatile__
 
 ## Overview
