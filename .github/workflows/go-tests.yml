@@ -12,5 +12,5 @@ jobs:
           go-version: '1.15'
       - name: Tests
         run: |
-          go test -v -coverprofile=coverage.out ,/...
+          go test -v -coverprofile=coverage.out ./...
           go tool cover -func=coverage.out
