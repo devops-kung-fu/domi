@@ -194,10 +194,6 @@ func ReceiveGitHubWebHook(c *gin.Context) {
 				Output: &ghclient.CheckRunOutput{
 					Title:   &title,
 					Summary: &summary,
-<<<<<<< HEAD
-=======
-					Text:    &text,
->>>>>>> main
 				},
 			})
 			if checkError != nil {
