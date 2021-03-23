@@ -1,8 +1,8 @@
 hooks:
-  - name: "Go Format"
-    type: pre-commit
-    exec: go
-    args: ["fmt"]
+  # - name: "Go Format"
+  #   type: pre-commit
+  #   exec: go
+  #   args: ["fmt"]
   - name: "Git Add"
     type: pre-commit
     exec: git

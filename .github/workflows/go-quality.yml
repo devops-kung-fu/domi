@@ -1,4 +1,4 @@
-name: domi Tests
+name: Go Quality Checks
 on: push
 jobs:
   tests:
@@ -9,28 +9,26 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.16.2'
+          go-version: '1.16'
       - name: Install Dependencies
         run: |
           go version
           go get -u golang.org/x/lint/golint
-      - name: Build
-        run: go build
-      - name: Vet
-        run: go vet
-      - name: Lint
-        run: golint
-      - name: Routes Tests
+          go get -u github.com/fzipp/gocyclo/cmd/gocyclo
+      - name: Tests
         run: |
-          cd routes
-          go test -v -coverprofile=coverage.out
-          go tool cover -func=coverage.out
-      - name: Lib Tests
-        run: |
-          cd lib
-          go test -v -coverprofile=coverage.out
+          go test -v -coverprofile=coverage.out ./...
           go tool cover -func=coverage.out
       - name: CodeCov
         run: bash <(curl -s https://codecov.io/bash)
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Build
+        run: go build
+      - name: Vet
+        run: go vet -v
+      - name: Lint
+        run: golint ./...
+      - name: gocyclo
+        run: gocyclo .
+        

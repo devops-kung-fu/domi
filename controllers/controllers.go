@@ -27,10 +27,10 @@ func CanYouHearMeNow(c *gin.Context) {
 
 func getGitHubClient(githubProvider *lib.GitHubProvider) (*ghclient.Client, error) {
 	githubClient, err := githubProvider.GitHubAuthenticator()
-		if err != nil {
-			log.Println(errors.New("GitHub Provider Authentication Failed"))
-			return nil, err
-		}
+	if err != nil {
+		log.Println(errors.New("GitHub Provider Authentication Failed"))
+		return nil, err
+	}
 	log.Println("GitHub Provider Authentication Succeeded")
 	return githubClient, nil
 }
@@ -45,14 +45,29 @@ func downloadRepo(githubClient *ghclient.Client, c *gin.Context, owner string, r
 	domiID, err := lib.DownloadFile(fs, archiveURL)
 	if err != nil {
 		log.Println(err)
+<<<<<<< HEAD
 		return "", err
+=======
+		return nil, err
+>>>>>>> main
 	}
 	unzipErr := lib.UnZip(fmt.Sprintf("/tmp/%s.zip", domiID), fmt.Sprintf("/tmp/%s", domiID))
 	if unzipErr != nil {
 		log.Println(unzipErr)
+<<<<<<< HEAD
 		return "", unzipErr
 	}
 	return domiID, nil
+=======
+		return nil, unzipErr
+	}
+	foundFiles, e := lib.FindFiles(fs, fmt.Sprintf("/tmp/%s", domiID), ".*\\.(tf|yaml|yml)")
+	if e != nil {
+		log.Println(e)
+		return nil, e
+	}
+	return foundFiles, nil
+>>>>>>> main
 }
 
 // Move this to lib/filesystem.go
@@ -69,13 +84,17 @@ func targetDiscovery(domiID string) ([]string, error) {
 func updateCheckRun(githubClient *ghclient.Client, c *gin.Context, owner string, repo string, checkRunID int64, status string, conclusion string, completedAt *ghclient.Timestamp, title string, summary string) error {
 	if conclusion != "" {
 		_, _, checkError := githubClient.Checks.UpdateCheckRun(c, owner, repo, checkRunID, ghclient.UpdateCheckRunOptions{
-			Name: "domi - Policy-as-Code Enforcer",
-			Status: &status,
-			Conclusion: &conclusion,
+			Name:        "domi - Policy-as-Code Enforcer",
+			Status:      &status,
+			Conclusion:  &conclusion,
 			CompletedAt: completedAt,
 			Output: &ghclient.CheckRunOutput{
-				Title: &title,
+				Title:   &title,
 				Summary: &summary,
+<<<<<<< HEAD
+=======
+				Text:    &text,
+>>>>>>> main
 			},
 		})
 		if checkError != nil {
@@ -83,12 +102,16 @@ func updateCheckRun(githubClient *ghclient.Client, c *gin.Context, owner string,
 		}
 	} else {
 		_, _, checkError := githubClient.Checks.UpdateCheckRun(c, owner, repo, checkRunID, ghclient.UpdateCheckRunOptions{
-			Name: "domi - Policy-as-Code Enforcer",
-			Status: &status,
+			Name:        "domi - Policy-as-Code Enforcer",
+			Status:      &status,
 			CompletedAt: completedAt,
 			Output: &ghclient.CheckRunOutput{
-				Title: &title,
+				Title:   &title,
 				Summary: &summary,
+<<<<<<< HEAD
+=======
+				Text:    &text,
+>>>>>>> main
 			},
 		})
 		if checkError != nil {
@@ -129,14 +152,14 @@ func ReceiveGitHubWebHook(c *gin.Context) {
 		hook, _ = github.New(github.Options.Secret(githubProvider.GithubWebhookSecret))
 	} else {
 		hook, _ = github.New()
-	}	
+	}
 	payload, err := hook.Parse(c.Request, github.PushEvent, github.CheckRunEvent)
 	if err != nil {
 		if err == github.ErrEventNotFound {
 			c.String(http.StatusNotImplemented, "This event has not been implemented.")
 		}
 	}
-	
+
 	switch payload.(type) {
 	case github.PushPayload:
 		push := payload.(github.PushPayload)
@@ -162,15 +185,19 @@ func ReceiveGitHubWebHook(c *gin.Context) {
 		summary := "**Status**: Queued"
 		if len(targets) > 0 {
 			_, _, checkError := githubClient.Checks.CreateCheckRun(c, owner, repo, ghclient.CreateCheckRunOptions{
-				Name: "domi - Policy-as-Code Enforcer",
+				Name:    "domi - Policy-as-Code Enforcer",
 				HeadSHA: sha,
-				Status: &status,
+				Status:  &status,
 				StartedAt: &ghclient.Timestamp{
 					Time: time.Now(),
 				},
 				Output: &ghclient.CheckRunOutput{
-					Title: &title,
+					Title:   &title,
 					Summary: &summary,
+<<<<<<< HEAD
+=======
+					Text:    &text,
+>>>>>>> main
 				},
 			})
 			if checkError != nil {
@@ -180,7 +207,7 @@ func ReceiveGitHubWebHook(c *gin.Context) {
 		c.String(http.StatusOK, "Push Payload Received")
 	case github.CheckRunPayload:
 		check := payload.(github.CheckRunPayload)
-		if (check.Action == "created" && check.CheckRun.App.ID == int64(githubProvider.AppID)) {
+		if check.Action == "created" && check.CheckRun.App.ID == int64(githubProvider.AppID) {
 			githubProvider.InstallationID = InstallationID
 			owner := check.Repository.Owner.Login
 			repo := check.Repository.Name

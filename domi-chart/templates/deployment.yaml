@@ -20,6 +20,14 @@ spec:
       labels:
         {{- include "domi.selectorLabels" . | nindent 8 }}
     spec:
+      volumes:
+      - name: domi
+      {{- if .Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ template "domi.fullname" . }}
+      {{- else }}
+        emptyDir: {}
+      {{- end -}}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -29,6 +37,9 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          volumeMounts:
+          - name: domi
+            mountPath: /domi
           env:
             - name: "GITHUB_APP_ID"
               value: "103984"

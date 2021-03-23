@@ -1,9 +1,17 @@
 apiVersion: v2
 name: domi
 description: A Helm chart for Kubernetes
+home: https://github.com/devops-kung-fu/domi
+
+sources:
+    - https://github.com/devops-kung-fu/domi-helm-charts
+
+maintainers:
+    - name: Julio Jimenez
+    - name: DJ Schleen
 
 # A chart can be either an 'application' or a 'library' chart.
-#
+# 
 # Application charts are a collection of templates that can be packaged into versioned archives
 # to be deployed.
 #
@@ -22,3 +30,5 @@ version: 0.0.35
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 appVersion: "0.0.35"
+
+
