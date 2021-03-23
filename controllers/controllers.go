@@ -45,29 +45,14 @@ func downloadRepo(githubClient *ghclient.Client, c *gin.Context, owner string, r
 	domiID, err := lib.DownloadFile(fs, archiveURL)
 	if err != nil {
 		log.Println(err)
-<<<<<<< HEAD
 		return "", err
-=======
-		return nil, err
->>>>>>> main
 	}
 	unzipErr := lib.UnZip(fmt.Sprintf("/tmp/%s.zip", domiID), fmt.Sprintf("/tmp/%s", domiID))
 	if unzipErr != nil {
 		log.Println(unzipErr)
-<<<<<<< HEAD
 		return "", unzipErr
 	}
 	return domiID, nil
-=======
-		return nil, unzipErr
-	}
-	foundFiles, e := lib.FindFiles(fs, fmt.Sprintf("/tmp/%s", domiID), ".*\\.(tf|yaml|yml)")
-	if e != nil {
-		log.Println(e)
-		return nil, e
-	}
-	return foundFiles, nil
->>>>>>> main
 }
 
 // Move this to lib/filesystem.go
@@ -91,10 +76,6 @@ func updateCheckRun(githubClient *ghclient.Client, c *gin.Context, owner string,
 			Output: &ghclient.CheckRunOutput{
 				Title:   &title,
 				Summary: &summary,
-<<<<<<< HEAD
-=======
-				Text:    &text,
->>>>>>> main
 			},
 		})
 		if checkError != nil {
@@ -108,10 +89,6 @@ func updateCheckRun(githubClient *ghclient.Client, c *gin.Context, owner string,
 			Output: &ghclient.CheckRunOutput{
 				Title:   &title,
 				Summary: &summary,
-<<<<<<< HEAD
-=======
-				Text:    &text,
->>>>>>> main
 			},
 		})
 		if checkError != nil {
