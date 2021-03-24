@@ -1,13 +1,12 @@
+
+![](img/domi128x128.png)
+
 # domi
 
-<<<<<<< HEAD
-__NOTICE: This documentation and project is under ~~massive~~ active development. Consider this ~~volatile~~ pre-alpha.__
-=======
-[![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/domi)](https://goreportcard.com/report/github.com/devops-kung-fu/domi) [![codecov](https://codecov.io/gh/devops-kung-fu/domi/branch/main/graph/badge.svg?token=R1TFX89WFQ)](https://codecov.io/gh/devops-kung-fu/domi)
+[![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/domi)](https://goreportcard.com/report/github.com/devops-kung-fu/domi) [![codecov](https://codecov.io/gh/devops-kung-fu/domi/branch/main/graph/badge.svg?token=R1TFX89WFQ)](https://codecov.io/gh/devops-kung-fu/domi) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/domi)
 
 
-__NOTICE: This documentation and project is under massive development. Consider this volatile__
->>>>>>> main
+__NOTICE: This documentation and project is under active development. Consider this pre-alpha.__
 
 ## Overview
 
@@ -42,3 +41,6 @@ If the changes being proposed or requested are breaking changes, please create a
 
 ## License
 Distributed under the MPL V2 License, please see the [LICENSE](LICENSE]) file for more details.
+
+## Credits
+Logo courtesy of [FlatIcon](https://flaticon.com)
