@@ -8,7 +8,7 @@ RUN dpkg -i *.deb
 ADD bin/domi /usr/local/bin/domi
 
 RUN apt-get autoremove -y && apt-get remove jq curl wget -y
-RUN mkdir /domi && groupadd -r domi && useradd --system --home-dir /domi --gid domi domi
+RUN mkdir /domi && groupadd -rg 5150 domi && useradd --system --home-dir /domi --gid domi domi
 RUN chown domi:domi /domi && rm *.deb
 USER domi
 

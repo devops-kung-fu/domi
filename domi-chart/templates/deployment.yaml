@@ -41,6 +41,8 @@ spec:
           - name: domi
             mountPath: /domi
           env:
+            - name: "AUDIT_MODE"
+              value: "0"
             - name: "GITHUB_APP_ID"
               value: "103984"
             - name: "GITHUB_PRIVATE_KEY"

@@ -10,29 +10,25 @@ import (
 
 // ConftestResults - Holds conftest results
 type ConftestResults []struct {
-	Filename 	string	`json:"filename"`
-	Successes	int		`json:"successes,omitempty"`
-	Failures	[]struct {
-		Msg			string	`json:"msg"`
-		Metadata	struct {
-			details	struct {
-
-			}
+	Filename  string `json:"filename"`
+	Successes int    `json:"successes,omitempty"`
+	Failures  []struct {
+		Msg      string `json:"msg"`
+		Metadata struct {
+			details struct{}
 		} `json:"metadata,omitempty"`
 	} `json:"failures,omitempty"`
-	Warnings	[]struct {
-		Msg			string	`json:"msg"`
-		Metadata	struct {
-			details	struct {
-
-			}
+	Warnings []struct {
+		Msg      string `json:"msg"`
+		Metadata struct {
+			details struct{}
 		} `json:"metadata,omitempty"`
 	} `json:"warnings,omitempty"`
 }
 
 // Scan - Use conftest to Scan discovered files.
 func Scan(fs fileSystem, policyID string, files []string) ConftestResults {
-	policyIDPath := fmt.Sprintf("/tmp/%s", policyID)
+	policyIDPath := fmt.Sprintf("/domi/%s", policyID)
 	policyPaths, policyPathsError := FindFiles(fs, policyIDPath, "policy$")
 	if policyPathsError != nil {
 		return nil

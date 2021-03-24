@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+
 	// "strings"
 	"time"
 
@@ -47,7 +48,7 @@ func downloadRepo(githubClient *ghclient.Client, c *gin.Context, owner string, r
 		log.Println(err)
 		return "", err
 	}
-	unzipErr := lib.UnZip(fmt.Sprintf("/tmp/%s.zip", domiID), fmt.Sprintf("/tmp/%s", domiID))
+	unzipErr := lib.UnZip(fmt.Sprintf("/domi/%s.zip", domiID), fmt.Sprintf("/domi/%s", domiID))
 	if unzipErr != nil {
 		log.Println(unzipErr)
 		return "", unzipErr
@@ -58,7 +59,7 @@ func downloadRepo(githubClient *ghclient.Client, c *gin.Context, owner string, r
 // Move this to lib/filesystem.go
 func targetDiscovery(domiID string) ([]string, error) {
 	fs := lib.OSFS{}
-	foundFiles, e := lib.FindFiles(fs, fmt.Sprintf("/tmp/%s", domiID), ".*\\.(tf|yaml|yml)")
+	foundFiles, e := lib.FindFiles(fs, fmt.Sprintf("/domi/%s", domiID), ".*\\.(tf|yaml|yml)")
 	if e != nil {
 		log.Println(e)
 		return nil, e
