@@ -4,8 +4,7 @@ go 1.16
 
 require (
 	github.com/bradleyfalzon/ghinstallation v1.1.1
-	github.com/gin-gonic/gin v1.6.3
-	github.com/go-playground/validator/v10 v10.4.1 // indirect
+	github.com/gin-gonic/gin v1.7.1
 	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/google/go-github/v29 v29.0.3 // indirect
 	github.com/google/go-github/v33 v33.0.0
