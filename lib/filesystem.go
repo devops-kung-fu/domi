@@ -100,13 +100,19 @@ func UnZip(source string, destination string) error {
 	if err != nil {
 		return err
 	}
-	defer archive.Close()
+
+	defer func() {
+		err = archive.Close()
+	}()
+
 	for _, file := range archive.Reader.File {
 		reader, err := file.Open()
 		if err != nil {
 			return err
 		}
-		defer reader.Close()
+		defer func() {
+			err = reader.Close()
+		}()
 		path := filepath.Join(destination, file.Name)
 		// Remove file if it already exists; no problem if it doesn't; other cases can error out below
 		_ = os.Remove(path)
@@ -134,7 +140,11 @@ func UnZip(source string, destination string) error {
 		if err != nil {
 			return err
 		}
-		defer writer.Close()
+
+		defer func() {
+			err = writer.Close()
+		}()
+
 		_, err = io.Copy(writer, reader)
 		if err != nil {
 			return err

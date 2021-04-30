@@ -8,8 +8,6 @@ import (
 	"net/http"
 	"os"
 	"regexp"
-
-	// "strings"
 	"time"
 
 	"github.com/devops-kung-fu/domi/integrations"
@@ -157,10 +155,8 @@ func ReceiveGitHubWebHook(c *gin.Context) {
 		hook, _ = github.New()
 	}
 	payload, err := hook.Parse(c.Request, github.PushEvent, github.CheckRunEvent)
-	if err != nil {
-		if err == github.ErrEventNotFound {
-			c.String(http.StatusNotImplemented, "This event has not been implemented.")
-		}
+	if err != nil && err == github.ErrEventNotFound {
+		c.String(http.StatusNotImplemented, "This event has not been implemented.")
 	}
 
 	switch payload.(type) {

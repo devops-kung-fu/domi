@@ -27,7 +27,9 @@ func (c *HTTPClient) DownloadFile(fs FileSystem) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	defer response.Body.Close()
+	defer func() {
+		err = response.Body.Close()
+	}()
 	if response.StatusCode != 200 {
 		return "", errors.New("Received non 200 response code")
 	}
@@ -37,7 +39,9 @@ func (c *HTTPClient) DownloadFile(fs FileSystem) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	defer file.Close()
+	defer func() {
+		err = file.Close()
+	}()
 	_, err = fs.Copy(file, response.Body)
 	if err != nil {
 		return "", err
