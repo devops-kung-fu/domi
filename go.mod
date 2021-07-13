@@ -11,7 +11,7 @@ require (
 	github.com/google/go-github/v29 v29.0.3 // indirect
 	github.com/google/go-github/v33 v33.0.0
 	github.com/google/go-querystring v1.1.0 // indirect
-	github.com/google/uuid v1.2.0
+	github.com/google/uuid v1.3.0
 	github.com/json-iterator/go v1.1.11 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
